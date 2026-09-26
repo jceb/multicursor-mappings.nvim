@@ -7,7 +7,24 @@ For details on the underlying built-in multicursor architecture, refer to the
 [Neovim Multicursor Documentation](https://neovim.io/doc/user/repeat/#_multiple-cursors)
 (or `:help multicursor` inside Neovim).
 
-### Default Keymaps
+## Installation
+
+With Lazy, add this configuration to nvim:
+
+```lua
+{
+  -- https://github.com/jceb/multicursor-mappings.nvim
+  "jceb/multicursor-mappings.nvim",
+}
+```
+
+With vim.pack add this configuration to nvim:
+
+```lua
+vim.pack.add({ "https://github.com/jceb/multicursor-mappings.nvim" })
+```
+
+## Keymaps
 
 | Mode           | Keymap           | Description                                                                                                               |
 | :------------- | :--------------- | :------------------------------------------------------------------------------------------------------------------------ |
@@ -22,7 +39,7 @@ For details on the underlying built-in multicursor architecture, refer to the
 | Normal         | `<M-=>`          | Toggle multicursor follow mode (`q=`)                                                                                     |
 | Normal         | `<M-m>`          | Move back to previous cursor and remove it (`[CQ`)                                                                        |
 
-### Requirements
+## Requirements
 
 - Neovim 0.13.0 or later with built-in multicursor support (`nvim.multicursor`
   namespace).
