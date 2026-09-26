@@ -1,0 +1,75 @@
+*multicursor-mappings.txt*   Key mappings for built-in multicursor support
+
+==============================================================================
+CONTENTS                                       *multicursor-mappings-contents*
+
+    1. Introduction ............................. |multicursor-mappings-intro|
+    2. Requirements ..................... |multicursor-mappings-requirements|
+    3. Key Mappings ......................... |multicursor-mappings-mappings|
+
+==============================================================================
+1. INTRODUCTION                                   *multicursor-mappings-intro*
+
+multicursor-mappings provides convenient key mappings and helper functions
+built on top of Neovim's native multicursor engine.
+
+For details on the underlying built-in multicursor implementation, see
+|multicursor|.
+
+==============================================================================
+2. REQUIREMENTS                           *multicursor-mappings-requirements*
+
+- Neovim 0.13.0 or later with built-in multicursor support.
+
+==============================================================================
+3. KEY MAPPINGS                               *multicursor-mappings-mappings*
+
+Below are the default key mappings provided by the plugin:
+
+Normal Mode Mappings ~
+
+<Esc>                                           *<Esc>* *multicursor-<Esc>*
+<A-i>                                           *<A-i>* *multicursor-<A-i>*
+                Clear all multicursors in the current buffer.
+
+<A-j>                                           *<A-j>* *multicursor-<A-j>*
+                Place a cursor at the current position and move down.
+                Accepts a |[count]|.
+
+<A-k>                                           *<A-k>* *multicursor-<A-k>*
+                Place a cursor at the current position and move up.
+                Accepts a |[count]|.
+
+<A-=>                                           *<A-=>* *multicursor-<A-=>*
+                Toggle multicursor follow mode (delegates to `q=`).
+
+<A-m>                                           *<A-m>* *multicursor-<A-m>*
+                Move back to the previous cursor and delete it (delegates to
+                `[CQ`).
+
+Normal and Visual Mode Mappings ~
+
+<A-a>                                           *<A-a>* *multicursor-<A-a>*
+                Normal mode: Place cursors at all occurrences of the word
+                under the cursor.
+                Visual mode: Place cursors at all occurrences of the current
+                selection.
+
+<A-n>                                           *<A-n>* *multicursor-<A-n>*
+                Normal mode: Place a cursor and jump to the next occurrence
+                of the word under the cursor.
+                Visual mode: Place a cursor and jump to the next occurrence
+                of the current selection.
+
+<A-S-n>                                     *<A-S-n>* *multicursor-<A-S-n>*
+                Normal mode: Place a cursor and jump backward to the
+                previous occurrence of the word under the cursor.
+                Visual mode: Place a cursor and jump backward to the
+                previous occurrence of the current selection.
+
+<A-C-n>                                     *<A-C-n>* *multicursor-<A-C-n>*
+                Place a cursor and advance search to the next match.
+                Accepts a |[count]|.
+
+==============================================================================
+vim:tw=78:ts=8:noet:ft=help:norl:
