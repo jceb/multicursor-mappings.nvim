@@ -37,15 +37,16 @@ local select_all = function(opts)
 	if lopts.visual_mode then
 		local selection = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."))
 		vim.fn.setreg("/", "\\V" .. table.concat(selection, "\\n"))
-		vim.api.nvim_feedkeys("v`<", "n", false)
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("v`<mx", true, false, true), "n", false)
 	else
-		vim.api.nvim_feedkeys("wb", "n", false) -- move to the beginning of the word and place a cursor
+		vim.api.nvim_feedkeys("wbmx", "n", false) -- move to the beginning of the word and place a cursor
 		vim.fn.setreg("/", "\\V\\<" .. vim.fn.expand("<cword>") .. "\\>") -- set search pattern to the current word
 	end
-	local pos = vim.api.nvim_win_get_cursor(0)
-	vim.api.nvim_feedkeys("Val1Q", "n", false)
 	vim.schedule(function()
-		vim.api.nvim_win_set_cursor(0, pos) -- place cursor back in its original position before placing cursors on the whole document
+		-- local pos = vim.api.nvim_win_get_cursor(0)
+		vim.api.nvim_feedkeys("Val1Q`x", "n", false)
+		-- FIXME: Somehow setting the cursor doesn't work - I use the x-mark as a workaound instead
+		-- vim.api.nvim_win_set_cursor(0, pos) -- place cursor back in its original position before placing cursors on the whole document
 	end)
 end
 
@@ -71,14 +72,12 @@ local search = function(opts)
 	if lopts.visual_mode then
 		local selection = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."))
 		vim.fn.setreg("/", "\\V" .. table.concat(selection, "\\n"))
-		vim.api.nvim_feedkeys("v`<", "n", false) -- move to the beginning of the word
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("v`<", true, false, true), "n", false) -- move to the beginning of the word
 	else
 		vim.api.nvim_feedkeys("wb", "n", false) -- move to the beginning of the word
 		vim.fn.setreg("/", "\\V\\<" .. vim.fn.expand("<cword>") .. "\\>") -- set search pattern to the current word
 	end
-	vim.schedule(function()
-		add_cursor_and_move({ mapping = lopts.mapping, movement = search_next })
-	end)
+	add_cursor_and_move({ mapping = lopts.mapping, movement = search_next })
 end
 
 vim.keymap.set("n", "<M-n>", function()
