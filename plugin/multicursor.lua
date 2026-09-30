@@ -37,7 +37,7 @@ local select_all = function(opts)
 	if lopts.visual_mode then
 		local selection = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."))
 		vim.fn.setreg("/", "\\V" .. table.concat(selection, "\\n"))
-		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("v`<mx", true, false, true), "n", false)
+		vim.api.nvim_feedkeys("v`<mx", "n", false)
 	else
 		vim.api.nvim_feedkeys("wbmx", "n", false) -- move to the beginning of the word and place a cursor
 		vim.fn.setreg("/", "\\V\\<" .. vim.fn.expand("<cword>") .. "\\>") -- set search pattern to the current word
@@ -72,12 +72,14 @@ local search = function(opts)
 	if lopts.visual_mode then
 		local selection = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."))
 		vim.fn.setreg("/", "\\V" .. table.concat(selection, "\\n"))
-		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("v`<", true, false, true), "n", false) -- move to the beginning of the word
+		vim.api.nvim_feedkeys("v`<", "n", false) -- move to the beginning of the word
 	else
 		vim.api.nvim_feedkeys("wb", "n", false) -- move to the beginning of the word
 		vim.fn.setreg("/", "\\V\\<" .. vim.fn.expand("<cword>") .. "\\>") -- set search pattern to the current word
 	end
-	add_cursor_and_move({ mapping = lopts.mapping, movement = search_next })
+	vim.schedule(function()
+		add_cursor_and_move({ mapping = lopts.mapping, movement = search_next })
+	end)
 end
 
 vim.keymap.set("n", "<M-n>", function()
