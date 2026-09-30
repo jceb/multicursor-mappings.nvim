@@ -1,7 +1,7 @@
 *multicursor-mappings.txt*   Key mappings for built-in multicursor support
 
 ==============================================================================
-CONTENTS                                                *multicursor-mappings*
+CONTENTS                                        *multicursor-mappings-content*
 
     1. Introduction ............................. |multicursor-mappings-intro|
     2. Requirements ..................... |multicursor-mappings-requirements|
