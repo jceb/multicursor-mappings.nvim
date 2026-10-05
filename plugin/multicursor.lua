@@ -44,7 +44,7 @@ local select_all = function(opts)
 	end
 	vim.schedule(function()
 		-- local pos = vim.api.nvim_win_get_cursor(0)
-		vim.api.nvim_feedkeys("Val1Q`x", "n", false)
+		vim.api.nvim_feedkeys("Valzqn`x", "n", false)
 		-- FIXME: Somehow setting the cursor doesn't work - I use the x-mark as a workaound instead
 		-- vim.api.nvim_win_set_cursor(0, pos) -- place cursor back in its original position before placing cursors on the whole document
 	end)
