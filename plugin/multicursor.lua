@@ -11,7 +11,8 @@ end, { noremap = true, desc = "Clear all multicursors" })
 local add_cursor_and_move = function(opts)
 	local lopts = opts or {}
 	vim.api.nvim_feedkeys("2q=", "n", false) -- disable follow-mode, so a new cursor can be placed - like Q
-	vim.api.nvim_mcursor(0, vim.api.nvim_win_get_cursor(0))
+	-- vim.api.nvim_mcursor(0, vim.api.nvim_win_get_cursor(0))
+	vim.api.nvim_feedkeys("1Q", "n", false)
 	vim.api.nvim_feedkeys(lopts.movement, "n", false)
 	if vim.v.count1 > 1 then
 		vim.api.nvim_feedkeys(
